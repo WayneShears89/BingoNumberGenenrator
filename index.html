@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <title> Shears Bingo</title>
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+  <style type="text/css">
+           div {
+            text-align: center;
+        }
+
+        .bigNumberDisplay {
+            font-size: 6em;
+        }
+
+        .numbersTable {
+            font-size: 1.6em;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table, tr, td {
+            border-collapse: collapse;
+            border: solid 1px #999;
+        }
+
+        td {
+            min-width: 100px;
+            color: #fff;
+        }
+
+        td.selected {
+            color: #f00;
+        }
+		
+		body { background-color:#333; }
+		
+		#snow{
+			background: none;
+			font-family: Androgyne;
+			background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index:1;
+			-webkit-animation: snow 10s linear infinite;
+			-moz-animation: snow 10s linear infinite;
+			-ms-animation: snow 10s linear infinite;
+			animation: snow 10s linear infinite;
+		}
+		@keyframes snow {
+		  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+		  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+		  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+		}
+		@-moz-keyframes snow {
+		  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+		  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+		  100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+		}
+		@-webkit-keyframes snow {
+		  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+		  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+		  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+		}
+		@-ms-keyframes snow {
+		  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+		  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+		  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+		}	
+
+
+  </style>
+
+	<script type='text/javascript'>//<![CDATA[
+	$(window).load(function(){
+	$(function() {
+		var bingo = {
+			selectedNumbers: [],
+			generateRandom: function() {
+				var min = 1;
+				var max = 90;
+				var random = Math.floor(Math.random() * (max - min + 1)) + min;
+				return random;
+			},
+			generateNextRandom: function() {
+				if (bingo.selectedNumbers.length > 90) {
+					alert("All numbers Exhausted");
+					return 0;
+				}
+				var random = bingo.generateRandom();
+				while ($.inArray(random, bingo.selectedNumbers) > -1) {
+					random = bingo.generateRandom();
+				}
+				bingo.selectedNumbers.push(random);
+				return random;
+			}
+		};
+		$('td').each(function() {
+			var concatClass = this.cellIndex + "" + this.parentNode.rowIndex;
+			var numberString = parseInt(concatClass, 10).toString();
+			$(this).addClass("cell" + numberString).text(numberString);
+		});
+		$('#btnGenerate').click(function() {
+			var random = bingo.generateNextRandom().toString();
+			$('.bigNumberDisplay span').text(random);
+			$('td.cell' + random).addClass('selected');
+		});
+		window.onbeforeunload = function(e) {
+			e = e || window.event;
+			var returnString = 'Are you sure?';
+			if (e) {
+				e.returnValue = returnString;
+			}
+			return returnString;
+		};
+	});
+	});//]]> 
+
+	</script>  
+</head>
+
+<body>
+<div id="snow">
+  <div class="container">
+    <div>
+        <h1>Shears Bingo 2017</h1>
+    </div>
+    <div class="bigNumberDisplay">
+        <span>0</span>
+    </div>
+    <div>
+        <input id="btnGenerate" type="button" value="Generate"/>
+		<input type="button" value="Refresh Page" onClick="history.go(0)">
+
+
+    </div>
+
+    <br/>
+
+    <div class="numbersTable">
+        <table>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <br/>
+	<img src="sa.png" height="300px" >
+
+</div>
+  
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "745k3vs7"
+    }], "*")
+  }
+</script>
+</div>
+</body>
+
+</html>
+
